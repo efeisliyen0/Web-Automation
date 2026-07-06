@@ -9,6 +9,15 @@ import org.testng.annotations.Test;
 
 public class SaucedemoLoginTest {
 
+    public void login(WebDriver driver) {
+        driver.findElement(By.id("user-name"))
+                .sendKeys("standard_user");
+        driver.findElement(By.id("password"))
+                .sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button"))
+                .click();
+    }
+
     @Test
     public void successfulLogin() {
 
@@ -16,12 +25,7 @@ public class SaucedemoLoginTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name"))
-                .sendKeys("standard_user");
-        driver.findElement(By.id("password"))
-                .sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button"))
-                .click();
+        login(driver);
         String currentUrl = driver.getCurrentUrl();
         Assert.assertTrue(
                 currentUrl.contains("inventory"),
