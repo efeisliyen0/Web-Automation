@@ -1,5 +1,7 @@
 package tests;
 
+import Base.BaseTest;
+import Pages.LoginMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,11 +13,11 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
 
-
-public class SaucedemoLogoutTest extends BaseTest{
+public class SaucedemoLogoutTest extends BaseTest {
     @Test
             public void logoutTest(){
-       login("standard_user");
+        LoginMethod loginMethods = new LoginMethod(driver);
+        loginMethods.login("standard_user");
         driver.findElement(By.id("react-burger-menu-btn")).click();
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(
