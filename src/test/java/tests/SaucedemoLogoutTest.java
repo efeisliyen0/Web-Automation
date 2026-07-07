@@ -12,20 +12,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
 
 
-public class SaucedemoLogoutTest {
+public class SaucedemoLogoutTest extends BaseTest{
     @Test
             public void logoutTest(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        options.addArguments("--disable-features=PasswordLeakDetection");
-        options.addArguments("--disable-save-password-bubble");
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+       login("standard_user");
         driver.findElement(By.id("react-burger-menu-btn")).click();
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(

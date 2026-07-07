@@ -11,20 +11,13 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaucedemoProductsTest {
+public class SaucedemoProductsTest extends BaseTest{
 
     // Uyarı: Thread.sleep kullandığımız için metodun yanına 'throws InterruptedException' ekledik
     @Test
     public void sortProductsByPriceLowToHighTest() throws InterruptedException {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
-
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        login("standard_user");
 
         // Login olduktan sonra 2 saniye bekle (Gözlemlemek için)
         Thread.sleep(2000);
